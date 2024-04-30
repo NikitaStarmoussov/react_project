@@ -1,5 +1,6 @@
 import { useTheme } from 'app/providers/themeProvider';
-import { Link, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
+import { Navbar } from 'widgets/Navbar';
 
 export default function Layout() {
   const { toggleTheme } = useTheme();
@@ -8,8 +9,7 @@ export default function Layout() {
       <button type='button' onClick={toggleTheme}>
         Theme
       </button>
-      <Link to='/'>Main</Link>
-      <Link to='/about'>About</Link>
+      <Navbar />
       <Outlet />
     </div>
   );

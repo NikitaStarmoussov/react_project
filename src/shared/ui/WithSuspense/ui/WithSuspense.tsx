@@ -1,5 +1,5 @@
 import { FC, PropsWithChildren, ReactNode, Suspense } from 'react';
-import { Fallback } from 'shared/fallback';
+import { Fallback } from 'shared/ui/Fallback';
 
 interface PropsWithSuspense extends PropsWithChildren {
   fallback?: ReactNode;

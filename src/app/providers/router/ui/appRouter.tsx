@@ -1,43 +1,47 @@
-import { AboutPage } from 'pages/aboutPage';
+// import { AboutPage } from 'pages/aboutPage';
 import { Layout } from 'pages/layout';
-import { MainPage } from 'pages/mainPage';
-import { NotFoundPage } from 'pages/notFoundPage';
+// import { MainPage } from 'pages/mainPage';
+// import { NotFoundPage } from 'pages/notFoundPage';
 import {
   Route,
   RouterProvider,
   createBrowserRouter,
   createRoutesFromElements
 } from 'react-router-dom';
-import { WithSuspense } from 'shared/withSuspense/';
+import { routeConfig } from 'shared/config/routeConfig/routeConfig';
+import { WithSuspense } from 'shared/ui/WithSuspense';
 
 export const AppRouter = () => {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path='/' element={<Layout />}>
-        <Route
+        {Object.values(routeConfig).map(({ element, path }) => (
+          <Route key={path} path={path} element={<WithSuspense>{element}</WithSuspense>} />
+        ))}
+        {/* <Route
           index
           element={
             <WithSuspense>
               <MainPage />
             </WithSuspense>
           }
-        />
-        <Route
+        /> */}
+        {/* <Route
           path='about'
           element={
             <WithSuspense>
               <AboutPage />
             </WithSuspense>
           }
-        />
-        <Route
+        /> */}
+        {/* <Route
           path='*'
           element={
             <WithSuspense>
               <NotFoundPage />
             </WithSuspense>
           }
-        />
+        /> */}
       </Route>
     )
   );
