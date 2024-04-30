@@ -1,40 +1,43 @@
-import React from 'react';
-import { Suspense } from 'react';
+import { AboutPage } from 'pages/aboutPage';
+import { Layout } from 'pages/layout';
+import { MainPage } from 'pages/mainPage';
+import { NotFoundPage } from 'pages/notFoundPage';
 import {
   Route,
   RouterProvider,
   createBrowserRouter,
   createRoutesFromElements
 } from 'react-router-dom';
-
-const MainPage = React.lazy(() => import('pages/mainPage/ui/mainPage'));
-const AboutPage = React.lazy(() => import('pages/aboutPage/ui/aboutPage'));
+import { WithSuspense } from 'shared/withSuspense/';
 
 export const AppRouter = () => {
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <Route
-        path='/'
-        lazy={async () => await import('pages/layout')}
-        hydrateFallbackElement={<div>loading</div>}
-      >
+      <Route path='/' element={<Layout />}>
         <Route
           index
           element={
-            <Suspense fallback={<div>loading</div>}>
+            <WithSuspense>
               <MainPage />
-            </Suspense>
+            </WithSuspense>
           }
         />
         <Route
           path='about'
           element={
-            <Suspense fallback={<div>loading</div>}>
+            <WithSuspense>
               <AboutPage />
-            </Suspense>
+            </WithSuspense>
           }
         />
-        <Route path='*' lazy={async () => await import('pages/notFoundPage')} />
+        <Route
+          path='*'
+          element={
+            <WithSuspense>
+              <NotFoundPage />
+            </WithSuspense>
+          }
+        />
       </Route>
     )
   );
