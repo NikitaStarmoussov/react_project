@@ -1,3 +1,3 @@
-export function funct(){
-    console.log("hello world!");
+export function funct() {
+  console.log('hello world!');
 }
