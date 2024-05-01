@@ -1,13 +1,15 @@
 import { Outlet } from 'react-router-dom';
-import { ThemeSwitcher } from 'shared/ui/ThemeSwitcher/';
 import { Navbar } from 'widgets/Navbar';
+import { Sidebar } from 'widgets/Sidebar';
 
 export default function Layout() {
   return (
-    <div>
+    <>
       <Navbar />
-      <ThemeSwitcher />
-      <Outlet />
-    </div>
+      <div className='content-page'>
+        <Sidebar />
+        <Outlet />
+      </div>
+    </>
   );
 }

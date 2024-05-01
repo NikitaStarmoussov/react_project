@@ -1,7 +1,4 @@
-// import { AboutPage } from 'pages/aboutPage';
 import { Layout } from 'pages/layout';
-// import { MainPage } from 'pages/mainPage';
-// import { NotFoundPage } from 'pages/notFoundPage';
 import {
   Route,
   RouterProvider,
@@ -16,32 +13,16 @@ export const AppRouter = () => {
     createRoutesFromElements(
       <Route path='/' element={<Layout />}>
         {Object.values(routeConfig).map(({ element, path }) => (
-          <Route key={path} path={path} element={<WithSuspense>{element}</WithSuspense>} />
+          <Route
+            key={path}
+            path={path}
+            element={
+              <WithSuspense>
+                <div className='page-wrapper'>{element}</div>
+              </WithSuspense>
+            }
+          />
         ))}
-        {/* <Route
-          index
-          element={
-            <WithSuspense>
-              <MainPage />
-            </WithSuspense>
-          }
-        /> */}
-        {/* <Route
-          path='about'
-          element={
-            <WithSuspense>
-              <AboutPage />
-            </WithSuspense>
-          }
-        /> */}
-        {/* <Route
-          path='*'
-          element={
-            <WithSuspense>
-              <NotFoundPage />
-            </WithSuspense>
-          }
-        /> */}
       </Route>
     )
   );
