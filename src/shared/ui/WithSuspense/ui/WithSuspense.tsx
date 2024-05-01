@@ -1,9 +1,7 @@
-import { FC, PropsWithChildren, ReactNode, Suspense } from 'react';
+import { FC, Suspense, SuspenseProps } from 'react';
 import { Fallback } from 'shared/ui/Fallback';
 
-interface PropsWithSuspense extends PropsWithChildren {
-  fallback?: ReactNode;
-}
+interface PropsWithSuspense extends SuspenseProps {}
 export const WithSuspense: FC<PropsWithSuspense> = ({ children, fallback }) => {
   return <Suspense fallback={fallback || <Fallback />}>{children}</Suspense>;
 };
