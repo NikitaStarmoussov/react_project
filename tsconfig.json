@@ -16,7 +16,7 @@
     }
     // "plugins": [{ "name": "typescript-plugin-css-modules" }],
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/sum.ts"],
   "ts-node": {
     "compilerOptions": {
       "module": "CommonJS"

@@ -24,6 +24,26 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
     exclude: /node_modules/
   };
 
+  const babelLoader = {
+    test: /\.(js|jsx|tsx)$/,
+    exclude: /node_modules/,
+    use: {
+      loader: 'babel-loader',
+      options: {
+        presets: ['@babel/preset-env'],
+        plugins: [
+          [
+            'i18next-extract',
+            {
+              locales: ['ru', 'en'],
+              keyAsDefaultValue: true
+            }
+          ]
+        ]
+      }
+    }
+  };
+
   const scssLoader = {
     test: /\.s[ac]ss$/i,
     use: [
@@ -43,5 +63,5 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
     ]
   };
 
-  return [imageLoader, svgLoader, typescriptLoader, scssLoader];
+  return [imageLoader, svgLoader, babelLoader, typescriptLoader, scssLoader];
 }
